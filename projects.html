@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Projects</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav container">
+    <h1 class="logo"><a href="index.html">YourName</a></h1>
+    <input type="checkbox" id="nav-toggle" class="nav__checkbox" />
+    <label for="nav-toggle" class="nav__toggle">&#9776;</label>
+    <ul class="nav__links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="blog.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h3 class="section__title">Featured Projects</h3>
+
+      <div class="projects__grid">
+        <!-- Project 1 -->
+        <article class="card">
+          <img src="images/tremor_detect.jpg" alt="Arduino tremor detector" />
+          <div class="card__content">
+            <h4>Tremor Detection Wearable</h4>
+            <p>Real-time accelerometer analysis with a PyTorch model on an ESP32.</p>
+            <a href="https://github.com/yourname/tremor-detect" class="btn--link">GitHub&nbsp;&rarr;</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card">
+          <img src="images/chessmotion.jpg" alt="ChessMotion screenshot" />
+          <div class="card__content">
+            <h4>ChessMotion</h4>
+            <p>An iOS app that logs OTB chess moves and exports FIDE-ready PGNs.</p>
+            <a href="https://github.com/yourname/ChessMotion" class="btn--link">GitHub&nbsp;&rarr;</a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card">
+          <img src="images/music_therapy.jpg" alt="Music therapy AI graph" />
+          <div class="card__content">
+            <h4>AI Music Therapist</h4>
+            <p>Context-aware playlist generation driven by biosignal-inferred emotion.</p>
+            <a href="https://medium.com/@yourname" class="btn--link">Case Study&nbsp;&rarr;</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

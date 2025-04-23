@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Your Name | Blog</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav container">
+    <h1 class="logo"><a href="index.html">YourName</a></h1>
+    <input type="checkbox" id="nav-toggle" class="nav__checkbox" />
+    <label for="nav-toggle" class="nav__toggle">&#9776;</label>
+    <ul class="nav__links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+    </ul>
+  </nav>
+
+  <section class="section container">
+    <h3 class="section__title">Blog</h3>
+
+    <!-- Blog-post list -->
+    <ul class="posts__list">
+      <!-- Duplicate this <li> block for each new post -->
+      <li class="post-card">
+        <h4 class="post-card__title">
+          <a href="posts/2025-04-23-first-post.html">First Post Title</a>
+        </h4>
+        <time datetime="2025-04-23" class="post-card__date">Apr 23 2025</time>
+        <p class="post-card__excerpt">
+          Short teaser sentence for the first post goes here&hellip;
+        </p>
+      </li>
+
+      <li class="post-card">
+        <h4 class="post-card__title">
+          <a href="posts/2025-04-10-second-post.html">Second Post Title</a>
+        </h4>
+        <time datetime="2025-04-10" class="post-card__date">Apr 10 2025</time>
+        <p class="post-card__excerpt">
+          Another short excerpt to entice readers&nbsp;&rarr;
+        </p>
+      </li>
+      <!-- End repeat -->
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+  </footer>
+  <script>document.getElementById("year").textContent =
+           new Date().getFullYear();</script>
+</body>
+</html>
