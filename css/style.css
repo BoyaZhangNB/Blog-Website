@@ -72,6 +72,7 @@ a {
 .nav__links a {
   font-weight: 500;
   position: relative;
+  color: black;
 }
 
 .nav__links a::after {
@@ -81,13 +82,13 @@ a {
   bottom: -0.25rem;
   width: 0;
   height: 2px;
-  background: var(--clr-primary);
+  background: black;
   transition: width 0.25s ease;
 }
 
 .nav__links a:hover::after,
 .nav__links a:focus-visible::after {
-  width: 100%;
+  width: 60%;
 }
 
 /* Mobile menu toggle */
@@ -115,19 +116,20 @@ a {
 
 /* ========== Hero Section ========== */
 .hero {
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-    ),
-    url("images/hero.jpg") center/cover no-repeat;
   color: #fff;
   padding: 6rem 0 4rem;
   text-align: center;
+  background: url(../assets/myphoto.jpeg) center/cover no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+  background-size: cover;
+  background-position: center;
 }
 
 .hero__content h2 {
   font-size: var(--fs-h1);
   margin: 0 0 0.5rem;
+  
 }
 
 .subtitle {
