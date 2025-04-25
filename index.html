@@ -5,30 +5,74 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Boya Zhang | Home</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://fonts.google.com/specimen/Inknut+Antiqua" />
+  <link rel="stylesheet" href="https://fonts.google.com/specimen/Kiwi+Maru" />
+  <link rel="stylesheet" href="https://fonts.google.com/specimen/Crimson+Text" />
 </head>
-<body>
-  <nav class="nav container">
-    <h1 class="logo"><a href="index.html">Boya Zhang</a></h1>
+<body class="Home">
+  <div class="starbar">
+    <nav class="nav container">
+      <h1 class="logo"><a href="index.html">Boya Zhang</a></h1>
+  
+      <input type="checkbox" id="nav-toggle" class="nav__checkbox" />
+      <label for="nav-toggle" class="nav__toggle" aria-label="Menu">&#9776;</label>
+  
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+  </div>
 
-    <input type="checkbox" id="nav-toggle" class="nav__checkbox" />
-    <label for="nav-toggle" class="nav__toggle" aria-label="Menu">&#9776;</label>
-
-    <ul class="nav__links">
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="blog.html">Blog</a></li>
-    </ul>
-  </nav>
-
-  <header class="hero">
-    <div class="hero__content container">
-      <h2>Hello, I’m <span class="accent">Boya Zhang</span></h2>
-      <a href="projects.html" class="btn">View My Work</a>
-    </div>
+  <header class="renard">
+    <div class="moon"></div>
   </header>
+  
+  <section class="section container">
+    <h3 class="section__title">Check out my Blog page!</h3>
 
-  <footer class="footer">
-    <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+    <!-- Blog-post list -->
+    <ul class="posts__list">
+      <!-- Duplicate this <li> block for each new post -->
+      <li class="post-card">
+        <h4 class="post-card__title">
+          <a href="posts/2025-04-23-first-post.html">First Post Title</a>
+        </h4>
+        <time datetime="2025-04-23" class="post-card__date">Apr 23 2025</time>
+        <p class="post-card__excerpt">
+          Short teaser sentence for the first post goes here&hellip;
+        </p>
+      </li>
+
+      <li class="post-card">
+        <h4 class="post-card__title">
+          <a href="posts/2025-04-10-second-post.html">Second Post Title</a>
+        </h4>
+        <time datetime="2025-04-10" class="post-card__date">Apr 10 2025</time>
+        <p class="post-card__excerpt">
+          Another short excerpt to entice readers&nbsp;&rarr;
+        </p>
+      </li>
+      <!-- End repeat -->
+    </ul>
+  </section>
+
+  <div class="gallery container">
+    <div class="gallery__item">
+      <img src="assets/hhtrack.jpg" alt="Project 1" />
+    </div>
+    <div class="gallery__item">
+      <img src="assets/erhu.JPG" alt="Project 2" />
+    </div>
+    <div class="gallery__item">
+      <img src="assets/hackwithoutborder.JPG" alt="Project 3" />
+    </div>
+  </div>
+
+  <footer class="footer spring">
+    <p>&copy; <span id="year"></span> Boya Zhang. All rights reserved.</p>
     <ul class="social">
       <li><a href="https://github.com/BoyaZhangNB">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/boya-zhang-380a842b0/">Linkedin</a></li>

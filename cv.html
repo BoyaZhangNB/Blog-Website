@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boya Zhang | CV</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="starbar">
+        <nav class="nav container">
+          <h1 class="logo"><a href="index.html">Boya Zhang</a></h1>
+      
+          <input type="checkbox" id="nav-toggle" class="nav__checkbox" />
+          <label for="nav-toggle" class="nav__toggle" aria-label="Menu">&#9776;</label>
+      
+          <ul class="nav__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="cv.html">CV</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <section class="section container">
+        <h3 class="section__title">Experience</h3>
+        <!-- CV-items list -->
+        <ul class="CV-list">
+
+          <!-- Duplicate this <li> block for each new item -->
+          <li class="CV-card">
+            <div class="CV-card__header">
+                <h4 class="CV-card__title">Position Title and Company Name</h4>
+                <p class="CV-card__date">Start Date - End Date</p>
+            </div>
+            <ul class="CV-card__details">
+                <li class="CV-card__description">Description of the role and responsibilities.</li>
+                <li class="CV-card__description">Another point about the role.</li>
+                <li class="CV-card__description">Additional information or achievements.</li>
+            </ul>
+          </li>
+
+          <li class="CV-card">
+            <div class="CV-card__header">
+                <h4 class="CV-card__title">Position Title and Company Name</h4>
+                <p class="CV-card__date">Start Date - End Date</p>
+            </div>
+            <ul class="CV-card__details">
+                <li class="CV-card__description">Description of the role and responsibilities.</li>
+                <li class="CV-card__description">Another point about the role.</li>
+                <li class="CV-card__description">Additional information or achievements.</li>
+            </ul>
+          </li>
+          <!-- End repeat -->
+
+        </ul>
+      </section>
+
+      <section class="section container">
+        <h3 class="section__title">Awards and Achievements</h3>
+        <div class="award">
+            <div class="award__item">
+                <p class="award__title">ImpactX Case Competition - Honorable Mention</p>
+                <p class="award__description">For the demonstration of exceptional innovation in addressing sustainability in hospitals</p>
+            </div>
+            <div class="award__item">
+                <p class="award__title">ESROP - Global</p>
+                <p class="award__description">For summer research project on machine intelligence with professor Jonathon Chan</p>
+            </div>
+            <div class="award__item">
+                <p class="award__title">Hack Without Borders - First Place</p>
+                <p class="award__description">Pending description</p>
+            </div>
+            <div class="award__item">
+                <p class="award__title">ESC180 PongAI Tournament  - First Place</p>
+                <p class="award__description">Pending description</p>
+            </div>
+            <div class="award__item">
+                <p class="award__title">Canadian Open Mathematics Challenges - Honorable Mention</p>
+                <p class="award__description">Pending description</p>
+            </div>
+        </div>
+      </section>
+
+
+      <footer class="footer winter">
+        <p>&copy; <span id="year"></span> Boya Zhang. All rights reserved.</p>
+        <ul class="social">
+          <li><a href="https://github.com/BoyaZhangNB">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/boya-zhang-380a842b0/">Linkedin</a></li>
+          <li><a href="mailto:harvardboya@gmail.com">Email</a></li>
+        </ul>
+      </footer>
+      <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -7,20 +7,25 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <nav class="nav container">
-    <h1 class="logo"><a href="index.html">BoyaZhang</a></h1>
-    <input type="checkbox" id="nav-toggle" class="nav__checkbox" />
-    <label for="nav-toggle" class="nav__toggle">&#9776;</label>
-    <ul class="nav__links">
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="blog.html" class="active">Blog</a></li>
-    </ul>
-  </nav>
+  <div class="starbar">
+    <nav class="nav container">
+      <h1 class="logo"><a href="index.html">Boya Zhang</a></h1>
+  
+      <input type="checkbox" id="nav-toggle" class="nav__checkbox" />
+      <label for="nav-toggle" class="nav__toggle" aria-label="Menu">&#9776;</label>
+  
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="cv.html">CV</a></li>
+      </ul>
+    </nav>
+  </div>
 
   <section class="section container">
     <h3 class="section__title">Blog</h3>
-
+    <p class="section__subtitle">KMUTT Research Progress</p>
     <!-- Blog-post list -->
     <ul class="posts__list">
       <!-- Duplicate this <li> block for each new post -->
@@ -47,9 +52,15 @@
     </ul>
   </section>
 
-  <footer class="footer">
-    <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+  <footer class="footer autumn">
+    <p>&copy; <span id="year"></span> Boya Zhang. All rights reserved.</p>
+    <ul class="social">
+      <li><a href="https://github.com/BoyaZhangNB">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/boya-zhang-380a842b0/">Linkedin</a></li>
+      <li><a href="mailto:harvardboya@gmail.com">Email</a></li>
+    </ul>
   </footer>
+
   <script>document.getElementById("year").textContent =
            new Date().getFullYear();</script>
 </body>
