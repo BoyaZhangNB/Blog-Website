@@ -14,6 +14,18 @@
   --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
+@font-face {
+  font-family: 'Inknut Antiqua';
+  src: url('fonts/Inknut_Antiqua/InknutAntiqua-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf') format('truetype');
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -64,9 +76,12 @@ a {
 
 .logo a {
   font-size: 2rem;
-  font-weight: 400;
-  font-family: 'Inknut Antiqua', serif;
+  font-weight: regular;
+  font-family: 'Inknut Antiqua';
   color: white;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* nav bar */
