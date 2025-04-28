@@ -128,7 +128,7 @@ a {
   }
 }
 
-/* ========== Hero Section ========== */
+/* ========== Hero and News Section ========== */
 #renard {
   background: url(../assets/renard.png) center/cover no-repeat;
   height: 100vh;
@@ -157,9 +157,9 @@ a {
 }
 
 .news__text {
-  font-family: 'Crimson Text', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: regular;
   padding: 1rem;
   padding-left: 3.2rem;
   align-items: center;
@@ -168,32 +168,82 @@ a {
   z-index: 0;
   border-radius: 1.5rem;
   width: 0;
+  display: flex;
+  flex-direction: row;
 }
 
-.news svg {
+#news3 a {
+  margin-top: 0.6rem; 
+  margin-left: 1rem;
+  transition: margin-left 0.3s ease;
+}
+
+#news2 a {
+  margin-top: 0.6rem; 
+  margin-left: 1rem;
+  transition: margin-left 0.3s ease;
+}
+
+#news1 a {
+  margin-top: 0.6rem;
+  margin-right: 1rem;
+  transition: margin-right 0.3s ease;
+}
+
+#news3 a:hover {
+  margin-left: calc(1rem + 10px);
+}
+
+#news2 a:hover {
+  margin-left: calc(1rem + 10px);
+}
+
+#news1 a:hover {
+  margin-right: calc(1rem + 10px);
+}
+
+.arrow_left {
+  width: 2.5rem;
+  transform: rotate(180deg);
+  transition: transform 0.01s ease;
+  margin-right: 1rem;
+}
+
+.arrow_right {
+  width: 2.5rem;
+  margin-left: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.news svg{
   z-index: 2;
 }
 
+/* News Width */
 :root {
   --news-width: 30rem;
 }
 
 #news1 .news__text {
+  justify-content: right;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   margin-left: -2.85rem;
+  padding-left: 4rem;
 }
 
 #news2 .news__text {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   margin-right: -2.85rem;
+  padding-left: 0.6rem;
 }
 
 #news3 .news__text {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   margin-right: -2.85rem;
+  padding-left: 0.6rem;
 }
 
 #news1 {
