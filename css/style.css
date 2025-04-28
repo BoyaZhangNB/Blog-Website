@@ -20,9 +20,6 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: var(--clr-text);
   background: var(--clr-bg-alt);
   line-height: 1.6;
   scroll-behavior: smooth;
@@ -50,10 +47,12 @@ a {
 }
 .starbar {
   background: url(../assets/renard.png) top/cover no-repeat;
-  position: sticky;
   top: 0;
   z-index: 100;
+  width: 100%;
+  background-position-y: 2.4%;
 }
+
 .nav {
   display: flex;
   align-items: center;
@@ -80,6 +79,7 @@ a {
   list-style: none;
   display: flex;
   gap: 2rem;
+  font-size: 1.1rem;
 }
 
 .nav__links a {
@@ -129,22 +129,112 @@ a {
 }
 
 /* ========== Hero Section ========== */
-.renard {
+#renard {
   background: url(../assets/renard.png) center/cover no-repeat;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  inset:0;
+  top: 4.5rem;
+  z-index: 5;
 }
 
-.moon {
+.locked {
+  position: fixed;
+}
+
+.news{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  flex: 1;
+  gap: 5.2rem;
+  align-items: stretch;
+  height: 24rem;
+  width: 100%;
+}
+
+.news__text {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding: 1rem;
+  padding-left: 3.2rem;
+  align-items: center;
+  text-align: left;
+  background-color: #f5f2d1;
+  z-index: 0;
+  border-radius: 1.5rem;
+  width: 0;
+}
+
+.news svg {
+  z-index: 2;
+}
+
+:root {
+  --news-width: 30rem;
+}
+
+#news1 .news__text {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -2.85rem;
+}
+
+#news2 .news__text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: -2.85rem;
+}
+
+#news3 .news__text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: -2.85rem;
+}
+
+#news1 {
+  display: flex;
+  flex-direction: row;
+  margin-left: 45rem;
+  width: var(--news-width);
+  height: 20%;
+}
+#news2 {
+  display: flex;
+  flex-direction: row;
+  margin-left: 32.7rem;
+  width: var(--news-width);
+  height: 20%;
+  justify-content: right;
+
+}
+#news3 {
+  display: flex;
+  flex-direction: row;
+  margin-left: 40.5rem;
+  width: var(--news-width);
+  height: 20%;
+  justify-content: right;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+#moon {
   position: absolute;
-  top: 30%;
-  left: 20%;
+  overflow: hidden;
+  top: 5%;
+  left: 15%;
   width: 13%;
   height: 20%;
   size: 10%;
   background: url(../assets/moon.png) center/cover no-repeat;
+  z-index: 4;
 }
 
 /* ========== Utility Buttons ========== */
@@ -231,6 +321,13 @@ a {
   cursor:pointer; 
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
 }
 
 .gallery__item:hover {
@@ -353,6 +450,7 @@ a {
   transition: transform 0.2s ease;
   font-family: 'Crimson Text', serif;
   width: 80%;
+  overflow: scroll;
 }
 
 .CV-card:hover {

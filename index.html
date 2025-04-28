@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://fonts.google.com/specimen/Crimson+Text" />
 </head>
 <body class="Home">
-  <div class="starbar">
+  <div class="starbar locked">
     <nav class="nav container">
       <h1 class="logo"><a href="index.html">Boya Zhang</a></h1>
   
@@ -26,8 +26,44 @@
     </nav>
   </div>
 
-  <header class="renard">
-    <div class="moon"></div>
+  <header id="renard" class="locked">
+    <div id="moon"></div>
+    <svg style="position: absolute;" width="100%" height="685" viewBox="0 0 1350 785" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet">
+      <path d="M1347 785C1044.05 -39.7911 -12 3.38788 -12 3.38788" stroke="#EDEDDA" stroke-width="5"/>
+    </svg>
+    <div class="news">
+      <div id="news1">
+        <svg width="90" height="77" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="45" cy="45" r="45" fill="#E6E198"/>
+          <circle cx="44.5" cy="44.5" r="32.5" fill="black"/>
+          <circle cx="44.5" cy="44.5" r="28.5" fill="#E6E198"/>    
+        </svg>
+        <div class="news__text invisible">
+            <p1 style="opacity: 0;">Lauching my own website!</p1>
+        </div>
+      </div>
+      <div id="news2">
+        <div class="news__text invisible">
+          <p1 style="opacity: 0;">Lauching my own website!</p1>
+        </div>
+        <svg width="90" height="77" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="45" cy="45" r="45" fill="#E6E198"/>
+          <circle cx="44.5" cy="44.5" r="32.5" fill="black"/>
+          <circle cx="44.5" cy="44.5" r="28.5" fill="#E6E198"/>    
+        </svg>
+      </div>
+      <div id="news3">
+        <div class="news__text invisible">
+          <p1 style="opacity: 0;">Lauching my own website!</p1>
+        </div>
+        <svg width="90" height="77" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="45" cy="45" r="45" fill="#E6E198"/>
+          <circle cx="44.5" cy="44.5" r="32.5" fill="black"/>
+          <circle cx="44.5" cy="44.5" r="28.5" fill="#E6E198"/>    
+        </svg>
+
+      </div>
+    </div>
   </header>
   
   <section class="section container">
@@ -56,9 +92,11 @@
     </div>
     <div class="gallery__item">
       <img src="assets/erhu.JPG" alt="Project 2" />
+      <div class="hidden-text">I play a Chinese instrument called Erhu</div>
     </div>
     <div class="gallery__item">
       <img src="assets/hackwithoutborder.JPG" alt="Project 3" />
+      <div class="hidden-text">Winning Hack without Borders</div>
     </div>
   </div>
 
@@ -71,7 +109,78 @@
     </ul>
   </footer>
 
-  <script>document.getElementById("year").textContent =
-           new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();  
+    
+    // Moon animation
+    (() => {
+      const moon = document.getElementById('moon');
+      const body = document.getElementById('renard');
+      const starbar = document.getElementsByClassName('starbar');
+      const a = 0.00078; // semi-major axis
+      let t = 0; // time variable
+
+      function animate(e) {
+        if (moon.getBoundingClientRect().left < 250 && e.deltaY < 0) return; // if the moon is at the left edge and scrolling up, do nothing
+        if (!body.classList.contains('locked')) return; // if not locked, do nothing
+        e.preventDefault(); // prevent default scroll behavior
+
+        t += e.deltaY; // increment time
+
+        const x = t, y = a * x * x;
+
+        moon.style.transform = `translate(${x}px, ${y}px)`;
+
+        /* If the y coordinate of the moon is above 1200px → unlock */
+        const outside = moon.getBoundingClientRect().top > 1200;
+
+        if(outside){
+          moon.remove();
+          body.classList.remove('locked'); // allow scrolling
+          starbar[0].classList.remove('locked');
+          window.removeEventListener('wheel', animate);
+          /* Optional: jump the scroll slightly, so the next wheel tick
+            scrolls the page instead of “doing nothing”*/
+          window.scrollBy({top:1, behavior:'smooth'});
+        }
+      }
+
+      window.addEventListener('wheel', animate, {passive:false});
+    })();
+
+    //Hero trajectory reveal of news when the moon overlaps div with id news
+    const news1 = document.getElementById('news1');
+    const moon = document.getElementById('moon');
+    const news2 = document.getElementById('news2');
+    const news3 = document.getElementById('news3');
+    const news = [news1, news2, news3];
+
+    function checkOverlap() {
+      for (let i = 0; i < news.length; i++) {
+        const newsItem = news[i].querySelector('.news__text');
+        const moonRect = moon.getBoundingClientRect();
+        const newsRect = newsItem.getBoundingClientRect();
+        if (
+          moonRect.left < newsRect.right &&
+          moonRect.right > newsRect.left &&
+          moonRect.top < newsRect.bottom &&
+          moonRect.bottom > newsRect.top
+        ) {
+          newsItem.classList.remove('invisible');
+          newsItem.style.transition = 'width 0.5s ease-in-out';
+          newsItem.style.width = '100%';
+          setTimeout(() => {
+            const paragraph = newsItem.querySelector('p1');
+            if (paragraph) {
+              paragraph.style.transition = 'opacity 0.5s ease-in-out';
+              paragraph.style.opacity = '1';
+            }
+          }, 300);
+        }
+      }
+    }
+    window.addEventListener('wheel', checkOverlap);
+
+  </script>
 </body>
 </html>
