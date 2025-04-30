@@ -83,7 +83,7 @@
   </header>
   
   <section class="section container">
-    <h3 class="section__title">Check out my Blog page!</h3>
+    <h3 class="section__title">Blog News!</h3>
 
     <!-- Blog-post list -->
     <ul class="posts__list">
@@ -153,11 +153,14 @@
             touch_news = true;
           }
         }
-        if(touch_news){
-          t += e.deltaY * 0.000005; // increment time
-        }
-        else {
+
+        const outside = moon.getBoundingClientRect().bottom > 1000;
+
+        if(!touch_news || outside){
           t += e.deltaY * 0.1; // increment time
+        }
+        else{
+          t += e.deltaY * 0.000005; // increment time
         }
 
         const x = t, y = a * x * x;
@@ -165,7 +168,6 @@
         moon.style.transform = `translate(${x}px, ${y}px)`;
 
         /* If the y coordinate of the moon is above 1200px → unlock */
-        const outside = moon.getBoundingClientRect().top > 1200;
 
         if(outside){
           moon.remove();
