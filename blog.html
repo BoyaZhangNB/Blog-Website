@@ -25,30 +25,18 @@
 
   <section class="section container">
     <h3 class="section__title">Blog</h3>
-    <p class="section__subtitle">KMUTT Research Progress</p>
     <!-- Blog-post list -->
-    <ul class="posts__list">
-      <!-- Duplicate this <li> block for each new post -->
+    <ul class="posts__list" id="blog-post-list">
+      <!-- Fallback card used if folder listing is unavailable -->
       <li class="post-card">
         <h4 class="post-card__title">
-          <a href="blog/2025-04-25-first-post.html">First Post Title</a>
+          <a href="blog/2025-04-25-first-post.html">Welcome to My Blog</a>
         </h4>
-        <time datetime="2025-04-23" class="post-card__date">Apr 23 2025</time>
+        <time datetime="2026-04-25" class="post-card__date">Apr 25 2026</time>
         <p class="post-card__excerpt">
-          Short teaser sentence for the first post goes here&hellip;
+          Outlines my goals for this blog and what I hope to achieve.
         </p>
       </li>
-
-      <li class="post-card">
-        <h4 class="post-card__title">
-          <a href="posts/2025-04-10-second-post.html">Second Post Title</a>
-        </h4>
-        <time datetime="2025-04-10" class="post-card__date">Apr 10 2025</time>
-        <p class="post-card__excerpt">
-          Another short excerpt to entice readers&nbsp;&rarr;
-        </p>
-      </li>
-      <!-- End repeat -->
     </ul>
   </section>
 
@@ -61,7 +49,128 @@
     </ul>
   </footer>
 
-  <script>document.getElementById("year").textContent =
-           new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function resolveBlogHref(rawHref) {
+      if (!rawHref || rawHref.startsWith('http://') || rawHref.startsWith('https://') || rawHref.startsWith('mailto:')) {
+        return null;
+      }
+
+      let href = rawHref.split('#')[0].split('?')[0].trim();
+      if (!href || !href.endsWith('.html')) return null;
+
+      if (href.startsWith('/')) {
+        href = href.replace(/^\//, '');
+      }
+
+      if (href.startsWith('blog/')) return href;
+      if (href.includes('/')) return null;
+
+      return `blog/${href}`;
+    }
+
+    async function discoverBlogPostFiles() {
+      const response = await fetch('blog/');
+      if (!response.ok) {
+        throw new Error(`Failed to read blog/ folder listing: ${response.status}`);
+      }
+
+      const htmlText = await response.text();
+      const parser = new DOMParser();
+      const listingDoc = parser.parseFromString(htmlText, 'text/html');
+      const hrefSet = new Set();
+
+      listingDoc.querySelectorAll('a[href]').forEach((anchor) => {
+        const resolved = resolveBlogHref(anchor.getAttribute('href') || '');
+        if (resolved) hrefSet.add(resolved);
+      });
+
+      return Array.from(hrefSet);
+    }
+
+    function fallbackDateFromFilename(href) {
+      const file = href.split('/').pop() || '';
+      const match = file.match(/^(\d{4}-\d{2}-\d{2})/);
+      return match ? match[1] : '';
+    }
+
+    async function fetchPostMetadata(href) {
+      const response = await fetch(href);
+      if (!response.ok) return null;
+
+      const htmlText = await response.text();
+      const parser = new DOMParser();
+      const postDoc = parser.parseFromString(htmlText, 'text/html');
+      const title = postDoc.querySelector('.blog h1')?.textContent?.trim() || postDoc.title?.trim() || 'Untitled Post';
+      const postTime = postDoc.querySelector('time.blog__date[datetime]') || postDoc.querySelector('time[datetime]');
+      const dateTime = postTime?.getAttribute('datetime')?.trim() || fallbackDateFromFilename(href);
+      const dateText = postTime?.textContent?.trim() || dateTime;
+      const excerpt = postDoc.querySelector('[data-teaser] p')?.textContent?.trim() || 'No teaser available.';
+
+      const parsedDate = new Date(dateTime);
+      if (Number.isNaN(parsedDate.getTime())) return null;
+
+      return {
+        href,
+        title,
+        dateTime,
+        dateText,
+        excerpt,
+        date: parsedDate
+      };
+    }
+
+    function renderBlogPosts(posts) {
+      const listEl = document.getElementById('blog-post-list');
+      if (!listEl) return;
+
+      listEl.innerHTML = '';
+
+      posts.forEach((post) => {
+        const card = document.createElement('li');
+        card.className = 'post-card';
+
+        const heading = document.createElement('h4');
+        heading.className = 'post-card__title';
+
+        const link = document.createElement('a');
+        link.href = post.href;
+        link.textContent = post.title;
+        heading.appendChild(link);
+
+        const time = document.createElement('time');
+        time.className = 'post-card__date';
+        time.dateTime = post.dateTime;
+        time.textContent = post.dateText;
+
+        const excerpt = document.createElement('p');
+        excerpt.className = 'post-card__excerpt';
+        excerpt.textContent = post.excerpt;
+
+        card.appendChild(heading);
+        card.appendChild(time);
+        card.appendChild(excerpt);
+        listEl.appendChild(card);
+      });
+    }
+
+    // Discover post files in blog/, fetch metadata from each post page, then sort newest first.
+    (async () => {
+      try {
+        const hrefs = await discoverBlogPostFiles();
+        if (!hrefs.length) return;
+
+        const posts = (await Promise.all(hrefs.map(fetchPostMetadata))).filter(Boolean);
+        posts.sort((a, b) => b.date - a.date);
+
+        if (posts.length) {
+          renderBlogPosts(posts);
+        }
+      } catch (error) {
+        console.warn('Could not auto-discover blog posts from blog/. Keeping fallback card.', error);
+      }
+    })();
+  </script>
 </body>
 </html>

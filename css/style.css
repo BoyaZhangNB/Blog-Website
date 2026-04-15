@@ -32,6 +32,9 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: var(--clr-bg-alt);
   line-height: 1.6;
   scroll-behavior: smooth;
@@ -630,6 +633,7 @@ a {
 .footer {
   color: #fff;
   text-align: center;
+  margin-top: auto;
   padding: 1.5rem 1rem;
   display: flex;
   flex-direction: column;
@@ -706,4 +710,9 @@ a {
   border-radius: 0;
   margin-top: 3rem;
   max-width: 70%;
+}
+
+/* Teaser is metadata for cards; keep hidden on the actual post page. */
+.blog [data-teaser] {
+  display: none;
 }

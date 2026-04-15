@@ -1,0 +1,30 @@
+<news>
+    <news1>
+        <title>New AI Model Released</title>
+        <link>https://www.example.com/new-ai-model</link>
+    </news1>
+    <news2>
+        <title>Company Achieves Milestone</title>
+        <link>https://www.example.com/milestone</link>
+    </news2>
+    <news3>
+        <title>Upcoming Webinar on AI Ethics</title>
+        <link>https://www.example.com/webinar-ai-ethics</link>
+    </news3>
+</news>
+
+<photos>
+    <photo1>
+        <title>AI Model Architecture</title>
+        <url>https://www.example.com/photos/ai-model-architecture.jpg</url>
+    </photo1>
+    <photo2>
+        <title>Company Team</title>
+        <url>https://www.example.com/photos/company-team.jpg</url>
+    </photo2>
+    <photo3>
+        <title>Webinar Announcement</title>
+        <url>https://www.example.com/photos/webinar-announcement.jpg</url>
+    </photo3>
+
+</photos>

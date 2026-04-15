@@ -127,6 +127,156 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();  
+
+    // Load homepage news and photos from data/index.xml.
+    (async () => {
+      try {
+        const response = await fetch('data/index.xml');
+        if (!response.ok) {
+          throw new Error(`Failed to load XML: ${response.status}`);
+        }
+
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        // Wrap XML because data/index.xml currently has multiple top-level nodes.
+        const xmlDoc = parser.parseFromString(`<root>${xmlText}</root>`, 'application/xml');
+
+        if (xmlDoc.querySelector('parsererror')) {
+          throw new Error('Invalid XML content in data/index.xml');
+        }
+
+        for (let i = 1; i <= 3; i++) {
+          const newsNode = xmlDoc.querySelector(`news${i}`);
+          const newsBlock = document.getElementById(`news${i}`);
+          if (newsNode && newsBlock) {
+            const title = newsNode.querySelector('title')?.textContent?.trim();
+            const link = newsNode.querySelector('link')?.textContent?.trim();
+            const titleEl = newsBlock.querySelector('p1');
+            const linkEl = newsBlock.querySelector('a');
+
+            if (title && titleEl) titleEl.textContent = title;
+            if (link && linkEl) linkEl.href = link;
+          }
+        }
+
+        const galleryItems = document.querySelectorAll('.gallery .gallery__item');
+        for (let i = 1; i <= 3; i++) {
+          const photoNode = xmlDoc.querySelector(`photo${i}`);
+          const item = galleryItems[i - 1];
+          if (photoNode && item) {
+            const title = photoNode.querySelector('title')?.textContent?.trim();
+            const url = photoNode.querySelector('url')?.textContent?.trim();
+            const imgEl = item.querySelector('img');
+            const captionEl = item.querySelector('.hidden-text');
+
+            if (url && imgEl) imgEl.src = url;
+            if (title && imgEl) imgEl.alt = title;
+            if (title && captionEl) captionEl.textContent = title;
+          }
+        }
+      } catch (error) {
+        console.error('Could not load homepage data from XML.', error);
+      }
+    })();
+
+    function resolveBlogHref(rawHref) {
+      if (!rawHref || rawHref.startsWith('http://') || rawHref.startsWith('https://') || rawHref.startsWith('mailto:')) {
+        return null;
+      }
+
+      let href = rawHref.split('#')[0].split('?')[0].trim();
+      if (!href || !href.endsWith('.html')) return null;
+
+      if (href.startsWith('/')) {
+        href = href.replace(/^\//, '');
+      }
+
+      if (href.startsWith('blog/')) return href;
+      if (href.includes('/')) return null;
+
+      return `blog/${href}`;
+    }
+
+    async function discoverBlogPostFiles() {
+      const response = await fetch('blog/');
+      if (!response.ok) {
+        throw new Error(`Failed to read blog/ folder listing: ${response.status}`);
+      }
+
+      const htmlText = await response.text();
+      const parser = new DOMParser();
+      const listingDoc = parser.parseFromString(htmlText, 'text/html');
+      const hrefSet = new Set();
+
+      listingDoc.querySelectorAll('a[href]').forEach((anchor) => {
+        const resolved = resolveBlogHref(anchor.getAttribute('href') || '');
+        if (resolved) hrefSet.add(resolved);
+      });
+
+      return Array.from(hrefSet);
+    }
+
+    function fallbackDateFromFilename(href) {
+      const file = href.split('/').pop() || '';
+      const match = file.match(/^(\d{4}-\d{2}-\d{2})/);
+      return match ? match[1] : '';
+    }
+
+    async function fetchPostMetadata(href, parser) {
+      const response = await fetch(href);
+      if (!response.ok) return null;
+
+      const htmlText = await response.text();
+      const postDoc = parser.parseFromString(htmlText, 'text/html');
+      const title = postDoc.querySelector('.blog h1')?.textContent?.trim() || postDoc.title?.trim() || 'Latest Post';
+      const timeEl = postDoc.querySelector('time.blog__date[datetime]') || postDoc.querySelector('time[datetime]');
+      const isoDate = timeEl?.getAttribute('datetime')?.trim() || fallbackDateFromFilename(href);
+      const dateText = timeEl?.textContent?.trim() || isoDate;
+      const excerpt = postDoc.querySelector('[data-teaser] p')?.textContent?.trim() || '';
+      const parsedDate = new Date(isoDate);
+      if (Number.isNaN(parsedDate.getTime())) return null;
+
+      return {
+        href,
+        title,
+        date: parsedDate,
+        dateText,
+        excerpt
+      };
+    }
+
+    // Keep homepage blog card synced to the latest post metadata discovered from blog/.
+    (async () => {
+      try {
+        const parser = new DOMParser();
+        const hrefs = await discoverBlogPostFiles();
+        const posts = (await Promise.all(hrefs.map((href) => fetchPostMetadata(href, parser)))).filter(Boolean);
+        posts.sort((a, b) => b.date - a.date);
+
+        const latest = posts[0];
+
+        const homeCard = document.querySelector('.posts__list .post-card');
+        if (!homeCard || !latest) return;
+
+        const homeLink = homeCard.querySelector('.post-card__title a');
+        const homeTime = homeCard.querySelector('.post-card__date');
+        const homeExcerpt = homeCard.querySelector('.post-card__excerpt');
+
+        if (homeLink) {
+          homeLink.href = latest.href;
+          homeLink.textContent = latest.title;
+        }
+        if (homeTime) {
+          homeTime.setAttribute('datetime', latest.date.toISOString().slice(0, 10));
+          homeTime.textContent = latest.dateText;
+        }
+        if (homeExcerpt) {
+          homeExcerpt.textContent = latest.excerpt || homeExcerpt.textContent;
+        }
+      } catch (error) {
+        console.warn('Could not auto-discover blog posts from blog/. Keeping homepage fallback card.', error);
+      }
+    })();
     
     // Moon animation
     (() => {
