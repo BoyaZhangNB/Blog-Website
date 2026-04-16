@@ -1,30 +1,58 @@
 <projects>
     <project>
-        <title>AI-Powered Chatbot</title>
+        <title>Matboard Bridge Design</title>
+        <img>assets/matboardbridge.jpg</img>
+        <description>Custom CAD software to accelerate design iteration</description>
+        <link>https://github.com/jiarui-wen/CIV102-Bridge-Project</link>
+        <date>2024-12-04</date>
+    </project>
+    <project>
+        <title>NeuroSteady</title>
         <img>assets/neurotremor.png</img>
-        <description>Developing an AI-powered chatbot that can assist users with various tasks and provide personalized recommendations.</description>
-        <link>https://www.example.com/ai-chatbot</link>
-        <date>2024-05-01</date>
+        <description>Hand tremor stabilization in neurosurgery using few-shot transfer learning with CNN-LSTM and closed-loop servo actuator.</description>
+        <link>https://github.com/supreme-gg-gg/NeuroSteady</link>
+        <date>2025-03-21</date>
     </project>
     <project>
-        <title>Machine Learning for Healthcare</title>
-        <img>assets/healthcare.png</img>
-        <description>Applying machine learning techniques to improve healthcare outcomes, including disease prediction and personalized treatment plans.</description>
-        <link>https://www.example.com/ml-healthcare</link>
-        <date>2024-06-15</date>
+        <title>Checknote</title>
+        <img>assets/checknote.png</img>
+        <description>Production-ready iOS application for secure tournament scorekeeping</description>
+        <link>https://github.com/BoyaZhangNB/CheckNote</link>
+        <date>2025-04-02</date>
     </project>
     <project>
-        <title>AI Ethics Research</title>
-        <img>assets/ai-ethics.png</img>
-        <description>Conducting research on the ethical implications of AI development and deployment, with a focus on ensuring fairness, transparency, and accountability.</description>
-        <link>https://www.example.com/ai-ethics-research</link>
-        <date>2024-07-30</date>
+        <title>SAMUeL</title>
+        <img>assets/samuel_arch.png</img>
+        <description>Deep learning architecture research of conditional diffusion for music generation</description>
+        <link>https://github.com/HaysonC/SAMUeL-GEN</link>
+        <date>2025-07-30</date>
     </project>
     <project>
-        <title>Natural Language Processing (NLP) for Social Media Analysis</title>
-        <img>assets/nlp-social-media.png</img>
-        <description>Using NLP techniques to analyze social media data for sentiment analysis, trend detection, and user behavior insights.</description>
-        <link>https://www.example.com/nlp-social-media</link>
-        <date>2024-08-20</date>
+        <title>BatterySim</title>
+        <img>assets/batterysim.png</img>
+        <description>Thermal and chemical battery modeling for fast-charging optimization research</description>
+        <link>https://github.com/BoyaZhangNB/BatterySim</link>
+        <date>2025-11-27</date>
+    </project>
+    <project>
+        <title>Water Heating Control</title>
+        <img>assets/watercontrol.png</img>
+        <description>Control system for solar water heater using state machine to maximize solar heating efficiency</description>
+        <link>https://github.com/Praxis-III/esc204-prototype</link>
+        <date>2026-04-07</date>
+    </project>
+    <project>
+        <title>Reinforcement Learning</title>
+        <img>assets/reinforce.png</img>
+        <description>Custom implementation and evaluate of deep reinforcement learning algorithm with Gym & MuJoCo</description>
+        <link>https://github.com/BoyaZhangNB/homework_fall2023</link>
+        <date>2026-04-15</date>
+    </project>
+    <project>
+        <title>Bibintell</title>
+        <img>assets/bibin.png</img>
+        <description>Bibintell is an AI study buddy that keeps you focused online</description>
+        <link>https://devpost.com/software/bibintell-ai-powered-chrome-extension</link>
+        <date>2026-03-10</date>
     </project>
 </projects>
