@@ -5,6 +5,7 @@
         <description>Custom CAD software to accelerate design iteration</description>
         <link>https://github.com/jiarui-wen/CIV102-Bridge-Project</link>
         <date>2024-12-04</date>
+        <tag>Software</tag>
     </project>
     <project>
         <title>NeuroSteady</title>
@@ -12,6 +13,7 @@
         <description>Hand tremor stabilization in neurosurgery using few-shot transfer learning with CNN-LSTM and closed-loop servo actuator.</description>
         <link>https://github.com/supreme-gg-gg/NeuroSteady</link>
         <date>2025-03-21</date>
+        <tag>Robotics</tag>
     </project>
     <project>
         <title>Checknote</title>
@@ -19,6 +21,7 @@
         <description>Production-ready iOS application for secure tournament scorekeeping</description>
         <link>https://github.com/BoyaZhangNB/CheckNote</link>
         <date>2025-04-02</date>
+        <tag>Software</tag>
     </project>
     <project>
         <title>SAMUeL</title>
@@ -26,6 +29,7 @@
         <description>Deep learning architecture research of conditional diffusion for music generation</description>
         <link>https://github.com/HaysonC/SAMUeL-GEN</link>
         <date>2025-07-30</date>
+        <tag>ML</tag>
     </project>
     <project>
         <title>BatterySim</title>
@@ -33,6 +37,7 @@
         <description>Thermal and chemical battery modeling for fast-charging optimization research</description>
         <link>https://github.com/BoyaZhangNB/BatterySim</link>
         <date>2025-11-27</date>
+        <tag>Control Systems</tag>
     </project>
     <project>
         <title>Water Heating Control</title>
@@ -40,6 +45,7 @@
         <description>Control system for solar water heater using state machine to maximize solar heating efficiency</description>
         <link>https://github.com/Praxis-III/esc204-prototype</link>
         <date>2026-04-07</date>
+        <tag>Control Systems</tag>
     </project>
     <project>
         <title>Reinforcement Learning</title>
@@ -47,6 +53,7 @@
         <description>Custom implementation and evaluate of deep reinforcement learning algorithm with Gym &amp; MuJoCo</description>
         <link>https://github.com/BoyaZhangNB/homework_fall2023</link>
         <date>2026-04-15</date>
+        <tag>ML</tag>
     </project>
     <project>
         <title>Bibintell</title>
@@ -54,5 +61,6 @@
         <description>Bibintell is an AI study buddy that keeps you focused online</description>
         <link>https://devpost.com/software/bibintell-ai-powered-chrome-extension</link>
         <date>2026-03-10</date>
+        <tag>Software</tag>
     </project>
 </projects>

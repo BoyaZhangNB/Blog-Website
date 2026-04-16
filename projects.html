@@ -42,6 +42,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const projectsGrid = document.getElementById("projects-grid");
+    let sortedProjects = [];
 
     function getNodeText(parent, tagName) {
       const node = parent.querySelector(tagName);
@@ -52,12 +53,38 @@
       const article = document.createElement("article");
       article.className = "card";
 
-      const image = document.createElement("img");
-      image.src = project.img;
-      image.alt = project.title;
+      const imgWrap = document.createElement("div");
+      imgWrap.className = "card__img-wrap";
+      const imgInner = document.createElement("div");
+      imgInner.className = "card__img-inner";
+      if (project.img) {
+        const image = document.createElement("img");
+        image.src = project.img;
+        image.alt = project.title;
+        image.loading = "lazy";
+        image.onerror = () => {
+          imgInner.innerHTML = "";
+        };
+        imgInner.appendChild(image);
+      }
+      imgWrap.appendChild(imgInner);
+
+      if (project.tag) {
+        const tag = document.createElement("span");
+        tag.className = "card__img-tag";
+        tag.textContent = project.tag;
+        imgWrap.appendChild(tag);
+      }
 
       const content = document.createElement("div");
       content.className = "card__content";
+
+      if (project.date) {
+        const dateEl = document.createElement("p");
+        dateEl.className = "card__date";
+        dateEl.textContent = new Date(project.date).getFullYear();
+        content.appendChild(dateEl);
+      }
 
       const title = document.createElement("h4");
       title.textContent = project.title;
@@ -65,19 +92,52 @@
       const description = document.createElement("p");
       description.textContent = project.description;
 
+      const footer = document.createElement("div");
+      footer.className = "card__footer";
+
       const link = document.createElement("a");
       link.href = project.link;
       link.className = "btn--link";
-      link.textContent = "Learn More \u2192";
+      link.textContent = "Learn more \u2192";
+      footer.appendChild(link);
 
       content.appendChild(title);
       content.appendChild(description);
-      content.appendChild(link);
+      content.appendChild(footer);
 
-      article.appendChild(image);
+      article.appendChild(imgWrap);
       article.appendChild(content);
 
       return article;
+    }
+
+    function getProjectColumnCount() {
+      if (window.matchMedia("(min-width: 980px)").matches) {
+        return 3;
+      }
+      if (window.matchMedia("(min-width: 600px)").matches) {
+        return 2;
+      }
+      return 1;
+    }
+
+    function renderProjectGrid(projects) {
+      const columnCount = getProjectColumnCount();
+      const columns = Array.from({ length: columnCount }, () => {
+        const column = document.createElement("div");
+        column.className = "projects__column";
+        return column;
+      });
+
+      projects.forEach((project, index) => {
+        const targetColumn = index % columnCount;
+        columns[targetColumn].appendChild(createProjectCard(project));
+      });
+
+      projectsGrid.innerHTML = "";
+      columns.forEach((column) => {
+        projectsGrid.appendChild(column);
+      });
     }
 
     async function renderProjects() {
@@ -101,20 +161,23 @@
           img: getNodeText(projectNode, "img"),
           description: getNodeText(projectNode, "description"),
           link: getNodeText(projectNode, "link"),
-          date: getNodeText(projectNode, "date")
+          date: getNodeText(projectNode, "date"),
+          tag: getNodeText(projectNode, "tag")
         }));
 
-        projects.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        projectsGrid.innerHTML = "";
-        projects.forEach((project) => {
-          projectsGrid.appendChild(createProjectCard(project));
-        });
+        sortedProjects = projects.sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderProjectGrid(sortedProjects);
       } catch (error) {
         projectsGrid.innerHTML = "<p>Unable to load projects right now.</p>";
         console.error(error);
       }
     }
+
+    window.addEventListener("resize", () => {
+      if (sortedProjects.length > 0) {
+        renderProjectGrid(sortedProjects);
+      }
+    });
 
     renderProjects();
   </script>
