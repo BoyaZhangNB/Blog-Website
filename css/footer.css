@@ -1,0 +1,44 @@
+/* ===== Footer ===== */
+.spring {
+  background: url(../assets/spring.png) center/cover no-repeat;
+}
+
+.summer {
+  background: url(../assets/summer.png) center/cover no-repeat;
+}
+
+.autumn {
+  background: url(../assets/autumn.png) center/cover no-repeat;
+}
+
+.winter {
+  background: url(../assets/winter.png) center/cover no-repeat;
+}
+
+.footer {
+  color: #fff;
+  text-align: center;
+  margin-top: auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.social {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.social a {
+  font-weight: 500;
+}
+
+.social a:hover {
+  text-decoration: underline;
+}

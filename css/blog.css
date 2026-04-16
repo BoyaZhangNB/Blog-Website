@@ -1,0 +1,56 @@
+/* --- Blog List Styles --- */
+.posts__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 2rem;
+}
+
+.post-card {
+  padding: 1.5rem 1.75rem;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: var(--shadow);
+  transition: transform .2s ease;
+  font-family: 'Crimson Text', serif;
+}
+.post-card:hover { transform: translateY(-4px); }
+
+.post-card__title {
+  margin-bottom: -0.25em;
+  margin-top: -0.2em;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.post-card__date {
+  font-size: .9rem;
+  color: #555;
+}
+.post-card__excerpt {
+  margin-top: .7em;
+  line-height: 1.5;
+}
+
+/* ===== Blog Template ===== */
+.blog {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blog h1{
+  font-family: 'crimson text';
+  font-size: 3rem;
+}
+
+.blog img{
+  border-radius: 0;
+  margin-top: 3rem;
+  max-width: 70%;
+}
+
+/* Teaser is metadata for cards; keep hidden on the actual post page. */
+.blog [data-teaser] {
+  display: none;
+}

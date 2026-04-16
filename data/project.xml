@@ -1,7 +1,7 @@
 <projects>
     <project>
         <title>Matboard Bridge Design</title>
-        <img>assets/matboardbridge.jpg</img>
+        <img>assets/CADdesign.png</img>
         <description>Custom CAD software to accelerate design iteration</description>
         <link>https://github.com/jiarui-wen/CIV102-Bridge-Project</link>
         <date>2024-12-04</date>
@@ -44,7 +44,7 @@
     <project>
         <title>Reinforcement Learning</title>
         <img>assets/reinforce.png</img>
-        <description>Custom implementation and evaluate of deep reinforcement learning algorithm with Gym & MuJoCo</description>
+        <description>Custom implementation and evaluate of deep reinforcement learning algorithm with Gym &amp; MuJoCo</description>
         <link>https://github.com/BoyaZhangNB/homework_fall2023</link>
         <date>2026-04-15</date>
     </project>

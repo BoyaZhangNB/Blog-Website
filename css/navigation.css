@@ -1,0 +1,89 @@
+/* ========== Navigation ========== */
+.Home {
+  background-color: #F7F7F7;
+}
+.starbar {
+  background: url(../assets/renard.png) top/cover no-repeat;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-position-y: 2.4%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+  max-height: 4.5rem;
+}
+
+
+.logo a {
+  font-size: 2rem;
+  font-weight: regular;
+  font-family: 'Inknut Antiqua';
+  color: white;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* nav bar */
+.nav__checkbox,
+.nav__toggle {
+  display: none;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  font-size: 1.1rem;
+}
+
+.nav__links a {
+  font-weight: 400;
+  position: relative;
+  font-family: 'Kiwi Maru', serif;
+  color: white;
+}
+
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.25s ease;
+}
+
+.nav__links a:hover::after,
+.nav__links a:focus-visible::after {
+  width: 60%;
+}
+
+/* Mobile menu toggle */
+@media (max-width: 800px) {
+  .nav__toggle {
+    display: block;
+    font-size: 1.875rem;
+    cursor: pointer;
+  }
+  .nav__links {
+    position: absolute;
+    inset: 100% 0 auto 0;
+    flex-direction: column;
+    background: white;
+    padding: 1rem 2rem 2rem;
+    box-shadow: var(--shadow);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav__checkbox:checked ~ .nav__links {
+    max-height: 15rem;
+  }
+}
