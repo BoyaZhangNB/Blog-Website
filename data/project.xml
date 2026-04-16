@@ -1,0 +1,30 @@
+<projects>
+    <project>
+        <title>AI-Powered Chatbot</title>
+        <img>assets/neurotremor.png</img>
+        <description>Developing an AI-powered chatbot that can assist users with various tasks and provide personalized recommendations.</description>
+        <link>https://www.example.com/ai-chatbot</link>
+        <date>2024-05-01</date>
+    </project>
+    <project>
+        <title>Machine Learning for Healthcare</title>
+        <img>assets/healthcare.png</img>
+        <description>Applying machine learning techniques to improve healthcare outcomes, including disease prediction and personalized treatment plans.</description>
+        <link>https://www.example.com/ml-healthcare</link>
+        <date>2024-06-15</date>
+    </project>
+    <project>
+        <title>AI Ethics Research</title>
+        <img>assets/ai-ethics.png</img>
+        <description>Conducting research on the ethical implications of AI development and deployment, with a focus on ensuring fairness, transparency, and accountability.</description>
+        <link>https://www.example.com/ai-ethics-research</link>
+        <date>2024-07-30</date>
+    </project>
+    <project>
+        <title>Natural Language Processing (NLP) for Social Media Analysis</title>
+        <img>assets/nlp-social-media.png</img>
+        <description>Using NLP techniques to analyze social media data for sentiment analysis, trend detection, and user behavior insights.</description>
+        <link>https://www.example.com/nlp-social-media</link>
+        <date>2024-08-20</date>
+    </project>
+</projects>

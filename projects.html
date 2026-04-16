@@ -26,40 +26,7 @@
   <section class="section section--alt">
     <div class="container">
       <h3 class="section__title">Featured Projects</h3>
-      <div class="projects__grid">
-        <!-- Project 1 -->
-        <article class="card">
-          <img src="../assets/neurotremor.png" alt="Arduino tremor detector" />
-          <div class="card__content">
-            <div class="card__header">
-              <h4>NeuroSteady</h4>
-              <p>Real-time accelerometer analysis with a PyTorch model on an ESP32.</p>
-            </div>
-    
-            <a href="https://github.com/supreme-gg-gg/NeuroSteady" class="btn--link">GitHub&nbsp;&rarr;</a>
-          </div>
-        </article>
-
-        <!-- Project 2 -->
-        <article class="card card2">
-          <img src="../assets/CheckNote.png" alt="CheckNote screenshot" />
-          <div class="card__content">
-            <h4>CheckNote</h4>
-            <p>An iOS app that logs OTB chess moves and exports FIDE-ready PGNs.</p>
-            <a href="https://github.com/BoyaZhangNB/CheckNote" class="btn--link">GitHub&nbsp;&rarr;</a>
-          </div>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="card">
-          <img src="../assets/musictherapy.png" alt="Music therapy AI graph" />
-          <div class="card__content">
-            <h4>AI Music Therapist</h4>
-            <p>Context-aware playlist generation driven by biosignal-inferred emotion.</p>
-            <a href="https://medium.com/@yourname" class="btn--link">Case Study&nbsp;&rarr;</a>
-          </div>
-        </article>
-      </div>
+      <div class="projects__grid" id="projects-grid"></div>
     </div>
   </section>
 
@@ -71,6 +38,85 @@
       <li><a href="mailto:harvardboya@gmail.com">Email</a></li>
     </ul>
   </footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const projectsGrid = document.getElementById("projects-grid");
+
+    function getNodeText(parent, tagName) {
+      const node = parent.querySelector(tagName);
+      return node ? node.textContent.trim() : "";
+    }
+
+    function createProjectCard(project) {
+      const article = document.createElement("article");
+      article.className = "card";
+
+      const image = document.createElement("img");
+      image.src = project.img;
+      image.alt = project.title;
+
+      const content = document.createElement("div");
+      content.className = "card__content";
+
+      const title = document.createElement("h4");
+      title.textContent = project.title;
+
+      const description = document.createElement("p");
+      description.textContent = project.description;
+
+      const link = document.createElement("a");
+      link.href = project.link;
+      link.className = "btn--link";
+      link.textContent = "Learn More \u2192";
+
+      content.appendChild(title);
+      content.appendChild(description);
+      content.appendChild(link);
+
+      article.appendChild(image);
+      article.appendChild(content);
+
+      return article;
+    }
+
+    async function renderProjects() {
+      try {
+        const response = await fetch("data/project.xml");
+        if (!response.ok) {
+          throw new Error("Failed to load project.xml");
+        }
+
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+        const parserError = xmlDoc.querySelector("parsererror");
+        if (parserError) {
+          throw new Error("Invalid XML format in project.xml");
+        }
+
+        const projects = Array.from(xmlDoc.querySelectorAll("project")).map((projectNode) => ({
+          title: getNodeText(projectNode, "title"),
+          img: getNodeText(projectNode, "img"),
+          description: getNodeText(projectNode, "description"),
+          link: getNodeText(projectNode, "link"),
+          date: getNodeText(projectNode, "date")
+        }));
+
+        projects.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        projectsGrid.innerHTML = "";
+        projects.forEach((project) => {
+          projectsGrid.appendChild(createProjectCard(project));
+        });
+      } catch (error) {
+        projectsGrid.innerHTML = "<p>Unable to load projects right now.</p>";
+        console.error(error);
+      }
+    }
+
+    renderProjects();
+  </script>
 </body>
 </html>
