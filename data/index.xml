@@ -1,15 +1,15 @@
 <news>
     <news1>
-        <title>New AI Model Released</title>
-        <link>https://www.example.com/new-ai-model</link>
+        <title>Reinforcement Learning Resource</title>
+        <link>https://github.com/BoyaZhangNB/homework_fall2023</link>
     </news1>
     <news2>
-        <title>Company Achieves Milestone</title>
-        <link>https://www.example.com/milestone</link>
+        <title>First Publication!</title>
+        <link>https://arxiv.org/abs/2507.19991</link>
     </news2>
     <news3>
-        <title>Upcoming Webinar on AI Ethics</title>
-        <link>https://www.example.com/webinar-ai-ethics</link>
+        <title>ECG and Doomscrolling</title>
+        <link>https://medium.com/@harvardboya/mr-darcy-or-doomscrolling-who-wins-your-heart-c97b31e6bfe0</link>
     </news3>
 </news>
 
